@@ -22,7 +22,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('home');
+
+    //Product
+    Route::get('product/change_status', [ProductController::class, 'change_status'])->name('product.change_status');
     Route::resource('product', ProductController::class);
+
     Route::resource('stock_in', StockInController::class);
     Route::resource('stock_out', StockOutController::class);
     Route::resource('user', UserController::class);

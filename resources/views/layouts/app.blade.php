@@ -4,25 +4,21 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
     <title>Dashboard Gudangku</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Nucleo Icons -->
     <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nucleo-svg.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <!-- Popper -->
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    {{-- <script src="https://unpkg.com/@popperjs/core@2"></script> --}}
     <!-- Main Styling -->
     <link href="{{ asset('css/argon-dashboard-tailwind.css?v=1.0.1') }}" rel="stylesheet" />
     <!-- plugin for charts  -->
-    <script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script>
+    {{-- <script src="{{ asset('js/plugins/chartjs.min.js') }}" async></script> --}}
     <!-- plugin for scrollbar  -->
-    <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script>
+    {{-- <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}" async></script> --}}
     <!-- main script file  -->
     <script src="{{ asset('js/argon-dashboard-tailwind.js?v=1.0.1') }}" async></script>
     <script src="https://kit.fontawesome.com/b2ba1193ce.js" crossorigin="anonymous"></script>
@@ -48,7 +44,7 @@
                         <li class="flex items-center">
                             <a href="{{ route('logout') }}"
                                 class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
-                                <i class="fa-solid fa-right-from-bracket mr-2"></i>
+                                <i class="mr-2 fa-solid fa-right-from-bracket"></i>
                                 <span class="">Sign Out</span>
                             </a>
                         </li>
