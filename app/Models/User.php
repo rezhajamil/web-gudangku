@@ -47,13 +47,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function product()
+    {
+        return $this->hasMany(Product::class, 'company_id');
+    }
+
     public function pegawai()
     {
-        return $this->hasMany(User::class, 'comany_id');
+        return $this->hasMany(User::class, 'company_id');
     }
 
     public function company()
     {
-        return $this->belongsTo(User::class, 'comany_id');
+        return $this->belongsTo(User::class, 'company_id');
     }
 }

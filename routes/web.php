@@ -27,10 +27,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('product/change_status', [ProductController::class, 'change_status'])->name('product.change_status');
     Route::resource('product', ProductController::class);
 
+    // Distributor
+    Route::resource('distributor', DistributorController::class);
+
     Route::resource('stock_in', StockInController::class);
     Route::resource('stock_out', StockOutController::class);
     Route::resource('user', UserController::class);
-    Route::resource('distributor', DistributorController::class);
 });
 
 // Route::get('/dashboard', function () {

@@ -12,18 +12,14 @@
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
                                     <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase ">
-                                        Today's Money</p>
-                                    <h5 class="mb-2 font-bold ">$53,000</h5>
-                                    <p class="mb-0 ">
-                                        <span class="text-sm font-bold leading-normal text-emerald-500">+55%</span>
-                                        since yesterday
-                                    </p>
+                                        Jumlah Barang</p>
+                                    <h5 class="mb-2 font-bold ">{{ $product }}</h5>
                                 </div>
                             </div>
                             <div class="px-3 text-right basis-1/3">
                                 <div
-                                    class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
-                                    <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                    class="flex items-center justify-center w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
+                                    <i class="text-lg font-bold text-white fa-solid fa-box-open"></i>
                                 </div>
                             </div>
                         </div>
@@ -39,18 +35,14 @@
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
                                     <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase ">
-                                        Today's Users</p>
-                                    <h5 class="mb-2 font-bold ">2,300</h5>
-                                    <p class="mb-0 ">
-                                        <span class="text-sm font-bold leading-normal text-emerald-500">+3%</span>
-                                        since last week
-                                    </p>
+                                        Jumlah Distributor</p>
+                                    <h5 class="mb-2 font-bold ">{{ $distributor }}</h5>
                                 </div>
                             </div>
                             <div class="px-3 text-right basis-1/3">
                                 <div
-                                    class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-red-600 to-orange-600">
-                                    <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
+                                    class="flex items-center justify-center w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-red-600 to-orange-600">
+                                    <i class="text-lg font-bold text-white fa-solid fa-warehouse"></i>
                                 </div>
                             </div>
                         </div>
@@ -66,18 +58,14 @@
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
                                     <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase ">
-                                        New Clients</p>
-                                    <h5 class="mb-2 font-bold ">+3,462</h5>
-                                    <p class="mb-0 ">
-                                        <span class="text-sm font-bold leading-normal text-red-600">-2%</span>
-                                        since last quarter
-                                    </p>
+                                        Barang Masuk Bulan Ini</p>
+                                    <h5 class="mb-2 font-bold ">{{ $stock_in }}</h5>
                                 </div>
                             </div>
                             <div class="px-3 text-right basis-1/3">
                                 <div
-                                    class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-emerald-500 to-teal-400">
-                                    <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white"></i>
+                                    class="flex items-center justify-center w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-emerald-500 to-teal-400">
+                                    <i class="text-lg font-bold text-white fa-solid fa-arrows-down-to-line"></i>
                                 </div>
                             </div>
                         </div>
@@ -93,18 +81,14 @@
                             <div class="flex-none w-2/3 max-w-full px-3">
                                 <div>
                                     <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase ">
-                                        Sales</p>
-                                    <h5 class="mb-2 font-bold ">$103,430</h5>
-                                    <p class="mb-0 ">
-                                        <span class="text-sm font-bold leading-normal text-emerald-500">+5%</span>
-                                        than last month
-                                    </p>
+                                        Barang Keluar Bulan Ini</p>
+                                    <h5 class="mb-2 font-bold ">{{ $stock_out }}</h5>
                                 </div>
                             </div>
                             <div class="px-3 text-right basis-1/3">
                                 <div
-                                    class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-orange-500 to-yellow-500">
-                                    <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white"></i>
+                                    class="flex items-center justify-center w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-orange-500 to-yellow-500">
+                                    <i class="text-lg font-bold text-white fa-solid fa-arrows-up-to-line"></i>
                                 </div>
                             </div>
                         </div>

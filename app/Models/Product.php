@@ -10,4 +10,9 @@ class Product extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function company()
+    {
+        return $this->belongsTo(User::class, 'company_id');
+    }
 }

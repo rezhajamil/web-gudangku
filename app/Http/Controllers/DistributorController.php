@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Distributor;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DistributorController extends Controller
 {
@@ -14,7 +15,9 @@ class DistributorController extends Controller
      */
     public function index()
     {
-        //
+        $distributors = Distributor::orderBy('name')->get();
+
+        return view('distributor.index', compact('distributors'));
     }
 
     /**
@@ -24,7 +27,7 @@ class DistributorController extends Controller
      */
     public function create()
     {
-        //
+        return view('distributor.create');
     }
 
     /**
@@ -35,7 +38,20 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', Rule::unique('distributors', 'name')],
+            'phone' => ['required', 'numeric'],
+            'address' => ['required',],
+        ]);
+
+        $distributor = Distributor::create([
+            'company_id' => auth()->user()->id,
+            'name' => ucwords($request->name),
+            'phone' => $request->phone,
+            'address' => ucwords($request->address),
+        ]);
+
+        return redirect()->route('distributor.index')->with('success', 'Berhasil Menambahkan Distributor');
     }
 
     /**
@@ -57,7 +73,7 @@ class DistributorController extends Controller
      */
     public function edit(Distributor $distributor)
     {
-        //
+        return view('distributor.edit', compact('distributor'));
     }
 
     /**
@@ -69,7 +85,19 @@ class DistributorController extends Controller
      */
     public function update(Request $request, Distributor $distributor)
     {
-        //
+        $request->validate([
+            'name' => ['required', Rule::unique('distributors', 'name')->ignore($distributor->id)],
+            'phone' => ['required', 'numeric'],
+            'address' => ['required',],
+        ]);
+
+        $distributor = Distributor::where('id', $distributor->id)->update([
+            'name' => ucwords($request->name),
+            'phone' => $request->phone,
+            'address' => ucwords($request->address),
+        ]);
+
+        return redirect()->route('distributor.index')->with('success', "Berhasil Merubah Data " . ucwords($request->name));
     }
 
     /**
@@ -80,6 +108,7 @@ class DistributorController extends Controller
      */
     public function destroy(Distributor $distributor)
     {
-        //
+        $distributor->delete();
+        return redirect()->route('distributor.index')->with('success', "Berhasil Menghapus Data " . ucwords($distributor->name));
     }
 }

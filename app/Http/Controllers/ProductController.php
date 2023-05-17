@@ -47,6 +47,7 @@ class ProductController extends Controller
         ]);
 
         $product = Product::create([
+            'company_id' => auth()->user()->id,
             'code' => strtoupper($request->code),
             'brand' => ucwords($request->brand),
             'name' => ucwords($request->name),
