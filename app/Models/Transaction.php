@@ -11,9 +11,15 @@ class Transaction extends Model
 
     protected $guarded = [];
 
+
     public function company()
     {
         return $this->belongsTo(User::class, 'company_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function product()

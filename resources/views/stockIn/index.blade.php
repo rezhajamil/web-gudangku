@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (session('success'))
-        <div class="relative w-6/12 p-4 mx-auto text-white bg-teal-500 rounded-lg shadow-lg">{{ session('success') }}d</div>
+        <div class="relative w-6/12 p-4 mx-auto text-white bg-teal-500 rounded-lg shadow-lg">{{ session('success') }}</div>
     @endif
     <div class="w-full px-6 py-6 mx-auto">
         <div class="flex flex-wrap -mx-3">
@@ -10,30 +10,50 @@
                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
                     <div
                         class="flex justify-between p-6 pb-0 mb-2 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                        <h6 class="text-lg uppercase">Data Barang</h6>
+                        <h6 class="text-lg uppercase">Data Barang Masuk</h6>
                         <div class="flex px-4 gap-x-2">
                             <button id="print"
                                 class="p-1 font-bold text-white ease-in-out bg-teal-500 rounded-md hover:bg-teal-700 aspect-square"><i
                                     class="fa-solid fa-print"></i></button>
-                            <a href="{{ route('product.create') }}"
+                            <a href="{{ route('stock_in.create') }}"
                                 class="inline-block p-1 font-bold text-center text-white ease-in-out bg-indigo-500 rounded-md hover:bg-indigo-700 aspect-square"><i
                                     class="fa-solid fa-plus"></i></a>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-4 px-6">
-
-                        <div class="flex flex-wrap items-end gap-x-4">
+                    <div class="flex flex-wrap justify-between px-6 mt-6 gap-x-4 gap-y-8">
+                        <div class="flex flex-wrap items-end gap-y-2 gap-x-4">
                             <input type="text" name="search" id="search" placeholder="Search..."
                                 class="px-2 rounded-lg">
                             <div class="flex flex-col">
                                 <select name="search_by" id="search_by" class="h-full px-6 py-2 rounded-lg">
                                     <option value="" selected disabled>Cari Berdasarkan</option>
-                                    <option value="code">Kode</option>
-                                    <option value="name">Nama</option>
-                                    <option value="brand">Brand</option>
+                                    <option value="code">Kode Barang</option>
+                                    <option value="distributor">Distributor</option>
+                                    <option value="address">Alamat</option>
                                 </select>
                             </div>
                         </div>
+
+                        <form action="{{ route('stock_in.index') }}" method="GET"
+                            class="flex flex-wrap items-center gap-y-2 gap-x-3">
+                            <input type="date" name="start_date" id="start_date"
+                                value="{{ request()->get('start_date') }}"
+                                text="{{ request()->get('start_date') ? date('d M Y', strtotime(request()->get('start_date'))) : '' }}"
+                                class="p-2 rounded-lg focus:ring-blue-500">
+                            <span class="font-semibold">s/d</span>
+                            <input type="date" name="end_date" id="end_date" class="p-2 rounded-lg focus:ring-blue-500"
+                                value="{{ request()->get('end_date') }}"
+                                text="{{ request()->get('end_date') ? date('d M Y', strtotime(request()->get('end_date'))) : '' }}">
+                            <button type="submit"
+                                class="p-2 font-semibold text-white transition-all bg-blue-500 rounded-lg whitespace-nowrap hover:bg-blue-700"><i
+                                    class="mr-2 fa-solid fa-search"></i>Filter</button>
+                            @if (request()->get('start_date') || request()->get('end_date'))
+                                <a href="{{ route('stock_in.index') }}"
+                                    class="p-2 font-semibold text-white transition-all rounded-lg bg-slate-500 whitespace-nowrap hover:bg-blue-700">
+                                    <i class="mr-2 fa-solid fa-circle-xmark"></i>Reset
+                                </a>
+                            @endif
+                        </form>
                     </div>
                     <div class="flex-auto px-0 pt-0 pb-2 mt-8">
                         <div class="px-0 py-6 overflow-x-auto" id="table-data">
@@ -48,27 +68,27 @@
                                             Kode</th>
                                         <th
                                             class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Brand</th>
+                                            Tanggal</th>
                                         <th
                                             class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Nama</th>
+                                            Jumlah Masuk</th>
                                         <th
                                             class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Stok</th>
+                                            Harga Satuan</th>
                                         <th
                                             class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Harga Jual</th>
+                                            Harga Total</th>
                                         <th
                                             class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Status</th>
+                                            Petugas</th>
                                         <th
-                                            class="px-6 py-3 font-semibold text-left capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 action">
+                                            class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 action">
                                             Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($products as $key => $product)
+                                    @forelse ($transactions as $key => $transaction)
                                         <tr class="">
                                             <td
                                                 class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
@@ -78,49 +98,41 @@
                                             <td
                                                 class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent code">
                                                 <p class="mb-0 text-xs font-semibold leading-tight text-left">
-                                                    {{ $product->code }}</p>
+                                                    {{ $transaction->product->code }}</p>
                                             </td>
                                             <td
-                                                class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent brand">
+                                                class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent date">
                                                 <p class="mb-0 text-xs font-semibold leading-tight text-left">
-                                                    {{ $product->brand }}</p>
+                                                    {{ date('d M Y', strtotime($transaction->date)) }}</p>
                                             </td>
                                             <td
-                                                class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent name">
+                                                class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent amount">
                                                 <p class="mb-0 text-xs font-semibold leading-tight text-left">
-                                                    {{ $product->name }}</p>
+                                                    {{ $transaction->amount }}</p>
                                             </td>
                                             <td
-                                                class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent stock">
+                                                class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent address">
                                                 <p class="mb-0 text-xs font-semibold leading-tight text-left">
-                                                    {{ $product->stock }}</p>
+                                                    Rp.{{ number_format($transaction->price, '0', ',', '.') }}</p>
                                             </td>
                                             <td
-                                                class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent price">
+                                                class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent address">
                                                 <p class="mb-0 text-xs font-semibold leading-tight text-left">
-                                                    Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
+                                                    Rp.{{ number_format($transaction->price * $transaction->amount, '0', ',', '.') }}
+                                                </p>
                                             </td>
                                             <td
-                                                class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                                @if ($product->status)
-                                                    <span
-                                                        class="bg-gradient-to-tl w-full from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Aktif</span>
-                                                @else
-                                                    <span
-                                                        class="bg-gradient-to-tl w-full from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Tidak
-                                                        Aktif</span>
-                                                @endif
+                                                class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent address">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-left">
+                                                    {{ $transaction->user->name }}</p>
                                             </td>
                                             <td
                                                 class="flex flex-col px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent action">
-                                                <a href="{{ route('product.edit', $product->id) }}"
+                                                <a href="{{ route('stock_in.edit', $transaction->id) }}"
                                                     class="block text-xs font-semibold leading-tight text-slate-400">
                                                     Edit </a>
-                                                <a href="{{ route('product.change_status', ['id' => $product->id]) }}"
-                                                    class="block mt-1 text-xs font-semibold leading-tight text-indigo-400">
-                                                    Change Status </a>
-                                                <form action="{{ route('product.destroy', $product->id) }}" method="post"
-                                                    class="m-0">
+                                                <form action="{{ route('stock_in.destroy', $transaction->id) }}"
+                                                    method="post" class="m-0">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit"
@@ -175,16 +187,21 @@
 
             const print = () => {
 
+                let start_date = $("#start_date").attr('text');
+                let end_date = $("#end_date").attr('text');
+
                 // Select the HTML table element
                 var table = $('#table-data').clone();
-                table.prepend("<span class='px-6 my-8 text-lg font-bold'>Laporan Stok Barang</span>")
+                table.prepend(
+                    `<span class='px-6 my-8 text-lg font-bold'>Laporan Barang Masuk${end_date?" "+end_date:''} ${end_date?"s/d "+end_date:''}</span>`
+                )
                 // Remove the column with the 'action' class
                 table.find('.action').remove();
 
                 // Convert the table to PDF
                 html2pdf()
                     .from(table[0])
-                    .save('Laporan Stok Barang.pdf');
+                    .save(`Laporan Barang Masuk${end_date?" "+end_date:''} ${end_date?"s/d "+end_date:''}.pdf`);
             }
         })
     </script>

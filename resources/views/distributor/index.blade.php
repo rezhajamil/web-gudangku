@@ -52,7 +52,7 @@
                                             class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Alamat</th>
                                         <th
-                                            class="px-6 py-3 font-semibold text-left capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 action">
+                                            class="px-6 py-3 text-xs font-bold text-left capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 action">
                                             Action
                                         </th>
                                     </tr>

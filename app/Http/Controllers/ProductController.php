@@ -15,7 +15,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // ddd(request()->segment(1));
         $products = Product::orderBy('code')->orderBy('brand')->orderBy('name')->get();
         return view('product.index', compact('products'));
     }
