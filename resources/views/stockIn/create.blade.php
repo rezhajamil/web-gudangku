@@ -27,7 +27,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('distributor')
+                            @error('product')
                                 <span class="text-sm italic font-light text-red-600">{{ $message }}</span>
                             @enderror
                         </div>

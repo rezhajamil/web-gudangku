@@ -18,7 +18,8 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('distributor_id');
+            $table->unsignedBigInteger('distributor_id')->nullable();
+            $table->string('name')->nullable();
             $table->string('type');
             $table->integer('price');
             $table->integer('amount');

@@ -34,7 +34,7 @@
         </a>
     </div>
 
-    <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent " />
+    <hr class="h-px mt-0 bg-black bg-gradient-to-r from-transparent via-black/80 to-transparent " />
 
     <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
         <ul class="flex flex-col pl-0 mb-0">
