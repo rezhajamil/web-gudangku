@@ -32,7 +32,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('stock_in', StockInController::class);
     Route::resource('stock_out', StockOutController::class);
-    Route::resource('user', UserController::class);
+
+    Route::middleware(['ensureRole:admin'])->group(function () {
+        Route::resource('user', UserController::class);
+        Route::put('change_status/user/{user}', [UserController::class, 'change_status'])->name('user.change_status');
+    });
 });
 
 // Route::get('/dashboard', function () {

@@ -50,75 +50,91 @@
                 </a>
             </li>
 
-            <li class="mt-0.5 w-full">
-                <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="{{ route('product.index') }}">
-                    <div
-                        class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                        {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
-                        <i class="mr-2 font-semibold text-orange-600 fa-solid fa-box-open"></i>
-                    </div>
-                    <span
-                        class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'product') text-orange-600 font-bold @endif">Data
-                        Barang</span>
-                </a>
-            </li>
-
-            @if (auth()->user()->role == 'company')
-                <li class="mt-0.5 w-full">
-                    <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                        href="{{ route('distributor.index') }}">
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
-                            <i class="mr-2 font-semibold text-teal-600 fa-solid fa-warehouse"></i>
-                        </div>
-                        <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'distributor') text-teal-600 font-bold @endif">Data
-                            Distributor</span>
-                    </a>
-                </li>
+            @if (auth()->user()->role == 'admin')
                 <li class="mt-0.5 w-full">
                     <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
                         href="{{ route('user.index') }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
-                            <i class="mr-2 font-semibold text-indigo-600 fa-solid fa-users"></i>
+                            <i class="mr-2 font-semibold text-orange-600 fa-solid fa-building"></i>
                         </div>
                         <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'user') text-indigo-600 font-bold @endif">Data
-                            Pegawai</span>
+                            class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'user') text-orange-600 font-bold @endif">Data
+                            Perusahaan</span>
+                    </a>
+                </li>
+            @else
+                <li class="mt-0.5 w-full">
+                    <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
+                        href="{{ route('product.index') }}">
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                            {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
+                            <i class="mr-2 font-semibold text-orange-600 fa-solid fa-box-open"></i>
+                        </div>
+                        <span
+                            class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'product') text-orange-600 font-bold @endif">Data
+                            Barang</span>
+                    </a>
+                </li>
+
+                @if (auth()->user()->role == 'company')
+                    <li class="mt-0.5 w-full">
+                        <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
+                            href="{{ route('distributor.index') }}">
+                            <div
+                                class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                                {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
+                                <i class="mr-2 font-semibold text-teal-600 fa-solid fa-warehouse"></i>
+                            </div>
+                            <span
+                                class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'distributor') text-teal-600 font-bold @endif">Data
+                                Distributor</span>
+                        </a>
+                    </li>
+                    <li class="mt-0.5 w-full">
+                        <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
+                            href="{{ route('user.index') }}">
+                            <div
+                                class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                                {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
+                                <i class="mr-2 font-semibold text-indigo-600 fa-solid fa-users"></i>
+                            </div>
+                            <span
+                                class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'user') text-indigo-600 font-bold @endif">Data
+                                Pegawai</span>
+                        </a>
+                    </li>
+                @endif
+                <li class="mt-0.5 w-full">
+                    <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
+                        href="{{ route('stock_in.index') }}">
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                            {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
+                            <i class="mr-2 font-semibold text-green-600 fa-solid fa-arrows-down-to-line"></i>
+                        </div>
+                        <span
+                            class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'stock_in') text-green-600 font-bold @endif">Barang
+                            Masuk</span>
+                    </a>
+                </li>
+
+                <li class="mt-0.5 w-full">
+                    <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
+                        href="{{ route('stock_out.index') }}">
+                        <div
+                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                            {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
+                            <i class="mr-2 font-semibold text-red-600 fa-solid fa-arrows-up-to-line"></i>
+                        </div>
+                        <span
+                            class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'stock_out') text-red-600 font-bold @endif">Barang
+                            Keluar</span>
                     </a>
                 </li>
             @endif
-            <li class="mt-0.5 w-full">
-                <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="{{ route('stock_in.index') }}">
-                    <div
-                        class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                        {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
-                        <i class="mr-2 font-semibold text-green-600 fa-solid fa-arrows-down-to-line"></i>
-                    </div>
-                    <span
-                        class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'stock_in') text-green-600 font-bold @endif">Barang
-                        Masuk</span>
-                </a>
-            </li>
-
-            <li class="mt-0.5 w-full">
-                <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="{{ route('stock_out.index') }}">
-                    <div
-                        class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                        {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
-                        <i class="mr-2 font-semibold text-red-600 fa-solid fa-arrows-up-to-line"></i>
-                    </div>
-                    <span
-                        class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'stock_out') text-red-600 font-bold @endif">Barang
-                        Keluar</span>
-                </a>
-            </li>
         </ul>
     </div>
 

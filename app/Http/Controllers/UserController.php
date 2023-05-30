@@ -14,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $companies = User::where('role', 'company')->orderBy('name')->get();
+
+        return view('user.index', compact('companies'));
     }
 
     /**
@@ -81,5 +83,15 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function change_status($id)
+    {
+        $user = User::find($id);
+
+        $user->status = !$user->status;
+        $user->save();
+
+        return redirect()->route('user.index')->with('success', "Berhasil Ubah Status " . ucwords($user->name));
     }
 }

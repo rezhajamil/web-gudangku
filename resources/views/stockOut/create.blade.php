@@ -41,7 +41,7 @@
                                 class="inline-block mb-2 ml-1 text-xs font-bold text-slate-700 ">Barang</label>
                             <select name="product" id="product"
                                 class="focus:shadow-primary-outline uppercase text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                                <option value="" selected disabled>Piilih Product</option>
+                                <option value="" selected disabled>Pilih Product</option>
                                 @foreach ($products as $product)
                                     <option value="{{ $product->id }}"
                                         {{ old('product') == $product->id ? 'selected' : '' }}>
