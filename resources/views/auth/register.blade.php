@@ -39,7 +39,8 @@
                     class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-zinc-800 to-zinc-700 opacity-60"></span>
                 <div class="container z-10">
                     <div class="flex flex-wrap justify-center -mx-3">
-                        <div class="w-full max-w-full px-3 mx-auto mt-0 text-center lg:flex-0 shrink-0 lg:w-5/12">
+                        <div
+                            class="w-full max-w-full px-3 mx-auto shadow-3xl mt-0 text-center lg:flex-0 shrink-0 lg:w-5/12">
                             <h1 class="mt-12 mb-2 text-white">Mari Bergabung!</h1>
                             <p class="text-white">Rasakan kemudahan menggunakan Gudangku.</p>
                         </div>
@@ -48,7 +49,8 @@
             </div>
             <div class="container">
                 <div class="flex flex-wrap -mx-3 -mt-48 md:-mt-56 lg:-mt-48">
-                    <div class="w-full max-w-full px-3 mx-auto mt-0 md:flex-0 shrink-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
+                    <div
+                        class="w-full max-w-full px-3 mx-auto shadow-3xl mt-0 md:flex-0 shrink-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
                         <div
                             class="relative z-0 flex flex-col min-w-0 break-words bg-white border-0 shadow-xl rounded-2xl bg-clip-border">
                             <div class="px-6 py-3 mt-3 mb-0 text-center bg-white border-b-0 rounded-t-2xl">

@@ -1,5 +1,5 @@
 <aside
-    class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
+    class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl drop-shadow-lg max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
     aria-expanded="false">
     <div class="h-19">
         <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="{{ route('home') }}">
@@ -16,13 +16,13 @@
             @else
                 @if (auth()->user()->role == 'worker')
                     <div class="flex items-center gap-x-2">
-                        <img src="{{ asset('storage/' .auth()->user()->with(['company'])->company->avatar) }}"
-                            alt="" class="w-8 h-8">
+                        <img src="{{ asset('storage/' . auth()->user()->company->avatar) }}" alt=""
+                            class="w-8 h-8">
                         <div>
                             <span
                                 class="block ml-1 text-lg font-semibold transition-all duration-200 ease-nav-brand">GUDANGKU</span>
                             <span
-                                class="block ml-1 text-sm transition-all duration-200 ease-nav-brand">{{ auth()->user()->with(['company'])->company->name }}</span>
+                                class="block ml-1 text-sm transition-all duration-200 ease-nav-brand">{{ auth()->user()->company->name }}</span>
                         </div>
                     </div>
                 @else<div class="flex items-center gap-x-2">
@@ -95,14 +95,14 @@
                     </li>
                     <li class="mt-0.5 w-full">
                         <a class=" py-2.7 text-sm ease-nav-brand cursor-pointer hover:bg-blue-500/20 rounded-lg my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                            href="{{ route('user.index') }}">
+                            href="{{ route('pegawai.index') }}">
                             <div
                                 class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                                 {{-- <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i> --}}
                                 <i class="mr-2 font-semibold text-indigo-600 fa-solid fa-users"></i>
                             </div>
                             <span
-                                class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'user') text-indigo-600 font-bold @endif">Data
+                                class="ml-1 duration-300 opacity-100 pointer-events-none ease @if (request()->segment(1) == 'pegawai') text-indigo-600 font-bold @endif">Data
                                 Pegawai</span>
                         </a>
                     </li>

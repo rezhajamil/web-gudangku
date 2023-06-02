@@ -10,11 +10,14 @@
                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
                     <div
                         class="flex justify-between p-6 pb-0 mb-2 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                        <h6 class="text-lg uppercase">Data Perusahaan</h6>
+                        <h6 class="text-lg uppercase">Data Pegawai</h6>
                         <div class="flex px-4 gap-x-2">
                             <button id="print"
                                 class="p-1 font-bold text-white ease-in-out bg-teal-500 rounded-md hover:bg-teal-700 aspect-square"><i
                                     class="fa-solid fa-print"></i></button>
+                            <a href="{{ route('pegawai.create') }}"
+                                class="inline-block p-1 font-bold text-center text-white ease-in-out bg-indigo-500 rounded-md hover:bg-indigo-700 aspect-square"><i
+                                    class="fa-solid fa-plus"></i></a>
                         </div>
                     </div>
                     <div class="flex flex-wrap justify-between px-6 mt-6 gap-x-4 gap-y-8">
@@ -24,7 +27,7 @@
                             <div class="flex flex-col">
                                 <select name="search_by" id="search_by" class="h-full px-6 py-2 rounded-lg">
                                     <option value="" selected disabled>Cari Berdasarkan</option>
-                                    <option value="name">Nama Perusahaan</option>
+                                    <option value="name">Nama Pegawai</option>
                                     <option value="email">Email</option>
                                 </select>
                             </div>
@@ -41,7 +44,7 @@
                                             No</th>
                                         <th
                                             class="px-2 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Profil Perusahaan</th>
+                                            Profil Pegawai</th>
                                         <th
                                             class="px-2 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Telepon</th>
@@ -58,7 +61,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($companies as $key => $company)
+                                    @foreach ($workers as $key => $worker)
                                         <tr>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
@@ -70,32 +73,32 @@
                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <div class="flex px-2 py-1">
                                                     <div>
-                                                        <img src="{{ asset('storage/' . $company->avatar) }}"
-                                                            class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl"
-                                                            alt="{{ $company->name }}" />
+                                                        <img src="{{ $worker->avatar ? asset('storage/' . $worker->avatar) : asset('images/avatar.png') }}"
+                                                            class="inline-flex items-center justify-center w-12 h-12 mr-4 text-sm text-white transition-all duration-200 ease-in-out rounded"
+                                                            alt="{{ $worker->name }}" />
                                                     </div>
                                                     <div class="flex flex-col justify-center">
-                                                        <h6 class="mb-0 text-sm leading-normal">{{ $company->name }}
+                                                        <h6 class="mb-0 text-sm leading-normal">{{ $worker->name }}
                                                         </h6>
                                                         <p class="mb-0 text-slate-400">
-                                                            {{ $company->email }}</p>
+                                                            {{ $worker->email }}</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                                 <p class="mb-0 text-sm">
-                                                    {{ $company->phone }}
+                                                    {{ $worker->phone }}
                                                 </p>
                                             </td>
                                             <td class="p-2 align-middle bg-transparent border-b shadow-transparent">
                                                 <p class="mb-0 text-sm">
-                                                    {{ $company->address }}
+                                                    {{ $worker->address }}
                                                 </p>
                                             </td>
                                             <td
                                                 class="p-2 text-sm leading-normal text-left align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                                @if ($company->status)
+                                                @if ($worker->status)
                                                     <span
                                                         class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap align-baseline font-bold uppercase leading-none text-white">
                                                         Aktif
@@ -108,35 +111,27 @@
                                                 @endif
                                             </td>
                                             <td
-                                                class="p-2 text-left align-middle bg-transparent border-b whitespace-nowrap shadow-transparent action">
-                                                <form action="{{ route('user.change_status', $company->id) }}"
+                                                class="p-2 space-y-2 text-left align-middle bg-transparent border-b whitespace-nowrap shadow-transparent action">
+                                                <a href="{{ route('pegawai.edit', $worker->id) }}"
+                                                    class="block px-1 text-sm font-semibold leading-tight text-slate-400">
+                                                    Edit</a>
+                                                <a href="{{ route('pegawai.edit_password', $worker->id) }}"
+                                                    class="block px-1 text-sm font-semibold leading-tight text-orange-400">
+                                                    Ganti Password</a>
+                                                <form action="{{ route('pegawai.change_status', $worker->id) }}"
                                                     method="POST" class="m-0">
                                                     @csrf
                                                     @method('put')
-                                                    @if ($company->status)
-                                                        <button type="submit"
-                                                            class="hover:bg-gradient-to-tl hover:from-red-500 hover:to-red-400 text-red-400 transition-all px-2.5 text-xs rounded-1.8 py-1.4 font-bold uppercase hover:text-white border border-red-400">
-                                                            Non Aktifkan </button>
+                                                    @if ($worker->status)
+                                                        <button type="submit""
+                                                            class="block px-1 text-sm font-semibold leading-tight text-red-400">
+                                                            Non Aktifkan</button>
                                                     @else
-                                                        <button type="submit"
-                                                            class="hover:bg-gradient-to-tl hover:from-emerald-500 hover:to-teal-400 text-teal-400 transition-all px-2.5 text-xs rounded-1.8 py-1.4 font-bold uppercase hover:text-white border border-teal-400">
-                                                            Aktifkan </button>
+                                                        <button type="submit""
+                                                            class="block px-1 text-sm font-semibold leading-tight text-teal-400">
+                                                            Aktifkan</button>
                                                     @endif
-                                                    {{-- <button type="submit"
-                                                        class="text-sm font-semibold text-red-600 border rounded-1.8 border-red-600 p-1 hover:text-white hover:bg-red-600 transition-all">
-                                                        Aktifkan </button> --}}
                                                 </form>
-                                                {{-- @if ($company->status)
-                                                    <a href="{{ route('user.change_status', $company->id) }}"
-                                                        class="text-sm font-semibold text-red-600 border rounded-1.8 border-red-600 p-1 hover:text-white hover:bg-red-600 transition-all">
-                                                        Non Aktifkan
-                                                    </a>
-                                                @else
-                                                    <a href="{{ route('user.change_status', $company->id) }}"
-                                                        class="text-sm font-semibold text-teal-600 border rounded-1.8 border-teal-600 p-1 hover:text-white hover:bg-teal-600 transition-all">
-                                                        Aktifkan
-                                                    </a>
-                                                @endif --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -187,7 +182,7 @@
                 // Select the HTML table element
                 var table = $('#table-data').clone();
                 table.prepend(
-                    `<span class='px-6 my-8 text-lg font-bold'>Laporan Data Perusahaan</span>`
+                    `<span class='px-6 my-8 text-lg font-bold'>Laporan Data Pegawai</span>`
                 )
                 // Remove the column with the 'action' class
                 table.find('.action').remove();
@@ -195,9 +190,7 @@
                 // Convert the table to PDF
                 html2pdf()
                     .from(table[0])
-                    .save(
-                        `Laporan Data Perusahaan.pdf`
-                    );
+                    .save(`Laporan Data Pegawai.pdf`);
             }
         })
     </script>

@@ -5,7 +5,7 @@
     @endif
     <div class="w-full px-6 py-6 mx-auto">
         <div class="flex flex-wrap -mx-3">
-            <div class="flex-none w-full max-w-full px-3">
+            <div class="flex-none w-full max-w-full px-3 shadow-3xl">
                 <div
                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
                     <div
@@ -72,32 +72,32 @@
                                         <tr class="">
                                             <td
                                                 class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                                <p class="mb-0 text-xs font-bold leading-tight text-left">
+                                                <p class="mb-0 text-sm font-bold leading-tight text-left">
                                                     {{ $key + 1 }}</p>
                                             </td>
                                             <td
                                                 class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent code">
-                                                <p class="mb-0 text-xs font-semibold leading-tight text-left">
+                                                <p class="mb-0 text-sm font-semibold leading-tight text-left">
                                                     {{ $product->code }}</p>
                                             </td>
                                             <td
                                                 class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent brand">
-                                                <p class="mb-0 text-xs font-semibold leading-tight text-left">
+                                                <p class="mb-0 text-sm font-semibold leading-tight text-left">
                                                     {{ $product->brand }}</p>
                                             </td>
                                             <td
                                                 class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent name">
-                                                <p class="mb-0 text-xs font-semibold leading-tight text-left">
+                                                <p class="mb-0 text-sm font-semibold leading-tight text-left">
                                                     {{ $product->name }}</p>
                                             </td>
                                             <td
                                                 class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent stock">
-                                                <p class="mb-0 text-xs font-semibold leading-tight text-left">
+                                                <p class="mb-0 text-sm font-semibold leading-tight text-left">
                                                     {{ $product->stock }}</p>
                                             </td>
                                             <td
                                                 class="px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent price">
-                                                <p class="mb-0 text-xs font-semibold leading-tight text-left">
+                                                <p class="mb-0 text-sm font-semibold leading-tight text-left">
                                                     Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
                                             </td>
                                             <td
@@ -114,7 +114,7 @@
                                             <td
                                                 class="flex flex-col px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent action">
                                                 <a href="{{ route('product.edit', $product->id) }}"
-                                                    class="block text-xs font-semibold leading-tight text-slate-400">
+                                                    class="block text-sm font-semibold leading-tight text-slate-400">
                                                     Edit </a>
                                                 <a href="{{ route('product.change_status', ['id' => $product->id]) }}"
                                                     class="block mt-1 text-xs font-semibold leading-tight text-indigo-400">
@@ -124,7 +124,7 @@
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit"
-                                                        class="text-xs font-semibold leading-tight text-red-400">
+                                                        class="text-sm font-semibold leading-tight text-red-400">
                                                         Delete </button>
                                                 </form>
                                             </td>

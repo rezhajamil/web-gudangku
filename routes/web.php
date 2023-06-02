@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StockInController;
 use App\Http\Controllers\StockOutController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,9 +34,16 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('stock_in', StockInController::class);
     Route::resource('stock_out', StockOutController::class);
 
-    Route::middleware(['ensureRole:admin'])->group(function () {
+    Route::middleware(['ensureRole:admin',])->group(function () {
         Route::resource('user', UserController::class);
         Route::put('change_status/user/{user}', [UserController::class, 'change_status'])->name('user.change_status');
+    });
+
+    Route::middleware(['ensureRole:company',])->group(function () {
+        Route::resource('pegawai', WorkerController::class);
+        Route::get('edit_password/pegawai/{pegawai}', [WorkerController::class, 'edit_password'])->name('pegawai.edit_password');
+        Route::put('update_password/pegawai/{pegawai}', [WorkerController::class, 'update_password'])->name('pegawai.update_password');
+        Route::put('change_status/pegawai/{pegawai}', [WorkerController::class, 'change_status'])->name('pegawai.change_status');
     });
 });
 

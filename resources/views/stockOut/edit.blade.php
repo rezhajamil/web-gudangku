@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="w-full max-w-full px-3 mx-auto shrink-0 md:w-8/12 md:flex-0">
+    <div class="w-full max-w-full px-3 mx-auto shadow-3xl shrink-0 md:w-8/12 md:flex-0">
         <form action="{{ route('stock_out.update', $transaction->id) }}" method="POST"
             class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl rounded-2xl bg-clip-border">
             @csrf
