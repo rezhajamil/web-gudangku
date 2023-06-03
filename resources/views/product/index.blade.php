@@ -15,9 +15,11 @@
                             <button id="print"
                                 class="p-1 font-bold text-white ease-in-out bg-teal-500 rounded-md hover:bg-teal-700 aspect-square"><i
                                     class="fa-solid fa-print"></i></button>
-                            <a href="{{ route('product.create') }}"
-                                class="inline-block p-1 font-bold text-center text-white ease-in-out bg-indigo-500 rounded-md hover:bg-indigo-700 aspect-square"><i
-                                    class="fa-solid fa-plus"></i></a>
+                            @if (auth()->user()->role == 'company')
+                                <a href="{{ route('product.create') }}"
+                                    class="inline-block p-1 font-bold text-center text-white ease-in-out bg-indigo-500 rounded-md hover:bg-indigo-700 aspect-square"><i
+                                        class="fa-solid fa-plus"></i></a>
+                            @endif
                         </div>
                     </div>
                     <div class="flex flex-col gap-4 px-6">
@@ -61,10 +63,12 @@
                                         <th
                                             class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Status</th>
-                                        <th
-                                            class="px-6 py-3 font-semibold text-left capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 action">
-                                            Action
-                                        </th>
+                                        @if (auth()->user()->role == 'company')
+                                            <th
+                                                class="px-6 py-3 font-semibold text-left capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 action">
+                                                Action
+                                            </th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -111,23 +115,25 @@
                                                         Aktif</span>
                                                 @endif
                                             </td>
-                                            <td
-                                                class="flex flex-col px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent action">
-                                                <a href="{{ route('product.edit', $product->id) }}"
-                                                    class="block text-sm font-semibold leading-tight text-slate-400">
-                                                    Edit </a>
-                                                <a href="{{ route('product.change_status', ['id' => $product->id]) }}"
-                                                    class="block mt-1 text-xs font-semibold leading-tight text-indigo-400">
-                                                    Change Status </a>
-                                                <form action="{{ route('product.destroy', $product->id) }}" method="post"
-                                                    class="m-0">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit"
-                                                        class="text-sm font-semibold leading-tight text-red-400">
-                                                        Delete </button>
-                                                </form>
-                                            </td>
+                                            @if (auth()->user()->role == 'company')
+                                                <td
+                                                    class="flex flex-col px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent action">
+                                                    <a href="{{ route('product.edit', $product->id) }}"
+                                                        class="block text-sm font-semibold leading-tight text-slate-400">
+                                                        Edit </a>
+                                                    <a href="{{ route('product.change_status', ['id' => $product->id]) }}"
+                                                        class="block mt-1 text-xs font-semibold leading-tight text-indigo-400">
+                                                        Change Status </a>
+                                                    <form action="{{ route('product.destroy', $product->id) }}"
+                                                        method="post" class="m-0">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            class="text-sm font-semibold leading-tight text-red-400">
+                                                            Delete </button>
+                                                    </form>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @empty
                                         <td colspan="7" class="w-full py-4 text-lg font-semibold text-center">Tidak Ada

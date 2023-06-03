@@ -40,10 +40,23 @@
                 <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
                     <div class="flex items-center md:ml-auto md:pr-4">
                     </div>
-                    <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
+                    <ul class="flex flex-row justify-end pl-0 mb-0 space-x-4 list-none md-max:w-full">
+                        <li class="flex items-center">
+                            <a href=""
+                                class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
+                                <span class="">Hi, {{ auth()->user()->name }}</span>
+                            </a>
+                        </li>
+                        <li class="flex items-center">
+                            <a href="{{ route('edit_profile') }}"
+                                class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand hover:underline">
+                                <i class="mr-2 fa-solid fa-user"></i>
+                                <span class="">Profile</span>
+                            </a>
+                        </li>
                         <li class="flex items-center">
                             <a href="{{ route('logout') }}"
-                                class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
+                                class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand hover:underline">
                                 <i class="mr-2 fa-solid fa-right-from-bracket"></i>
                                 <span class="">Sign Out</span>
                             </a>

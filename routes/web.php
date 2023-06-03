@@ -34,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('stock_in', StockInController::class);
     Route::resource('stock_out', StockOutController::class);
 
+    Route::get('edit_profile', [UserController::class, 'edit_profile'])->name('edit_profile');
+    Route::put('update_profile/{user}', [UserController::class, 'update_profile'])->name('update_profile');
+    Route::put('update_password/{user}', [UserController::class, 'update_password'])->name('update_password');
+
     Route::middleware(['ensureRole:admin',])->group(function () {
         Route::resource('user', UserController::class);
         Route::put('change_status/user/{user}', [UserController::class, 'change_status'])->name('user.change_status');

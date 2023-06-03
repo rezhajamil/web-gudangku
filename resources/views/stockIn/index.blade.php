@@ -81,10 +81,12 @@
                                         <th
                                             class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Petugas</th>
-                                        <th
-                                            class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 action">
-                                            Action
-                                        </th>
+                                        @if (auth()->user()->role == 'company')
+                                            <th
+                                                class="px-6 py-3 text-xs font-bold text-left uppercase align-middle bg-transparent border-b border-collapse border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 action">
+                                                Action
+                                            </th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -126,20 +128,22 @@
                                                 <p class="mb-0 text-sm font-semibold leading-tight text-left">
                                                     {{ $transaction->user->name }}</p>
                                             </td>
-                                            <td
-                                                class="flex flex-col px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent action">
-                                                <a href="{{ route('stock_in.edit', $transaction->id) }}"
-                                                    class="block text-sm font-semibold leading-tight text-slate-400">
-                                                    Edit </a>
-                                                <form action="{{ route('stock_in.destroy', $transaction->id) }}"
-                                                    method="post" class="m-0">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit"
-                                                        class="text-sm font-semibold leading-tight text-red-400">
-                                                        Delete </button>
-                                                </form>
-                                            </td>
+                                            @if (auth()->user()->role == 'company')
+                                                <td
+                                                    class="flex flex-col px-6 py-3 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent action">
+                                                    <a href="{{ route('stock_in.edit', $transaction->id) }}"
+                                                        class="block text-sm font-semibold leading-tight text-slate-400">
+                                                        Edit </a>
+                                                    <form action="{{ route('stock_in.destroy', $transaction->id) }}"
+                                                        method="post" class="m-0">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            class="text-sm font-semibold leading-tight text-red-400">
+                                                            Delete </button>
+                                                    </form>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @empty
                                         <td colspan="7" class="w-full py-4 text-lg font-semibold text-center">Tidak Ada
