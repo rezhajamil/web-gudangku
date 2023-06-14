@@ -16,7 +16,7 @@ class StockInController extends Controller
      */
     public function index(Request $request)
     {
-        $transactions = Transaction::with(['company', 'user', 'product', 'distributor'])->where('type', 'in');
+        $transactions = Transaction::where('company_id', auth()->user()->role == 'company' ? auth()->user()->id : auth()->user()->company_id)->with(['company', 'user', 'product', 'distributor'])->where('type', 'in');
 
         if ($request->start_date) {
             $transactions->whereDate('date', '>=', $request->start_date);

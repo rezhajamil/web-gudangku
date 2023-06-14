@@ -15,7 +15,7 @@ class DistributorController extends Controller
      */
     public function index()
     {
-        $distributors = Distributor::orderBy('name')->get();
+        $distributors = Distributor::where('company_id', auth()->user()->id)->orderBy('name')->get();
 
         return view('distributor.index', compact('distributors'));
     }
