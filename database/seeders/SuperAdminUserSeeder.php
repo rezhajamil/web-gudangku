@@ -20,6 +20,7 @@ class SuperAdminUserSeeder extends Seeder
             'address' => 'Medan',
             'email_verified_at' => now(),
             'password' => bcrypt('gudangku123'),
+            'role' => 'admin',
         ]);
     }
 }
